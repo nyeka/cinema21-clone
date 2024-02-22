@@ -50,7 +50,7 @@ export const SearchMovieName = async (movieName: string) => {
       `https://api.themoviedb.org/3/search/movie?query=${movieName}&language=en-US`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.tmdbToken}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZTY5Y2NkY2I2ZjAwNTEyYTc4OWQzM2FiNmQ5YTMzYSIsInN1YiI6IjY1ZDQzNzVlMjNkMjc4MDE2M2YzYWQzMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.x83YcbNc3FBauoN2m_qQtjzj0Zss74OaI10Bq2MIw0U`,
         },
       }
     );

@@ -40,24 +40,28 @@ const Page = async ({ params }: any) => {
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-2xl font-semibold">Synopsis</p>
-            <p>{data?.overview}</p>
+            <p>{!data.overview ? "-" : data?.overview}</p>
           </div>
         </div>
       </div>
       <div className="my-12 flex flex-col gap-12">
         <p className="text-2xl font-medium">Similiar Movie</p>
         <div className="flex flex-row flex-wrap justify-around gap-12  py-4">
-          {listSimiliarMovie.results.slice(0, 5).map((item: any) => {
-            return (
-              <Moviecard
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                image={item?.poster_path}
-                rating={item?.vote_average}
-              />
-            );
-          })}
+          {listSimiliarMovie.results > 0 ? (
+            <div>There's no similiar movie</div>
+          ) : (
+            listSimiliarMovie.results.slice(0, 5).map((item: any) => {
+              return (
+                <Moviecard
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  image={item?.poster_path}
+                  rating={item?.vote_average}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>

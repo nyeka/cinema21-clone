@@ -7,16 +7,15 @@ import { SearchMovieName } from "@/infra/search";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const goToMovieDetails = async (search: string) => {
-  const data = await SearchMovieName(search);
-  const id = data.results[0].id;
-  // router.push(`/details/${data.id}`);
-  console.log(id);
-};
-
 const Nav = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
+
+  const goToMovieDetails = async (search: string) => {
+    const data = await SearchMovieName(search);
+    const id = data.results[0].id;
+    router.push(`/details/${id}`);
+  };
 
   return (
     <div>
@@ -25,7 +24,9 @@ const Nav = () => {
         <label className="input input-bordered flex items-center gap-2">
           <button
             onClick={async () => {
-              await goToMovieDetails(search);
+              if (search !== "") {
+                await goToMovieDetails(search);
+              }
             }}
           >
             <svg
@@ -46,6 +47,7 @@ const Nav = () => {
             className="grow"
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={async (e) => {
+              if (search === "") return;
               if (e.key === "Enter") {
                 await goToMovieDetails(search);
               }
