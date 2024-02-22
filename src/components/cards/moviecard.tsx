@@ -11,14 +11,14 @@ const Moviecard = (movie: {
   const router = useRouter();
   return (
     <div
-      className="card w-fit cursor-pointer md:w-64 bg-base-100 shadow-xl"
+      className="card w-full cursor-pointer md:w-64 bg-base-100 shadow-xl"
       onClick={() => {
         router.push(`/details/${movie.id}`);
       }}
     >
       <figure>
         <img
-          src={`${process.env.image}/${movie.image}`}
+          src={`https://image.tmdb.org/t/p/w500/${movie.image}`}
           alt={movie.title}
           width={200}
           height={150}
